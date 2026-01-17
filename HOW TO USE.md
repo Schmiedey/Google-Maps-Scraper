@@ -6,18 +6,12 @@ A high-performance lead extraction engine built with Python, Playwright, and Str
 
 Follow these steps to get the environment ready and the app running in minutes.
 
-### 1. Clone & Setup
-```bash
-# Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
-cd Google-Maps-Scraper
-
 # Create a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate  # On macOS/Linux
 # .venv\Scripts\activate   # On Windows
 ```
-
+.
 ### 2. Install Dependencies
 ```bash
 # Upgrade pip and install requirements
