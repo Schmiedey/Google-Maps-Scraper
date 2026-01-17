@@ -101,329 +101,87 @@ def apply_theme() -> None:
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-        :root {
-            --ink: #111827;
-            --muted: #475569;
-            --bg-1: #f8fafc;
-            --bg-2: #e2e8f0;
-            --bg-3: #fff7ed;
-            --panel: #ffffff;
-            --panel-muted: #f8fafc;
-            --border: #d1d5db;
-            --accent: #0284c7;
-            --accent-strong: #0369a1;
-            --accent-warm: #f97316;
-            --focus: rgba(2, 132, 199, 0.25);
-            color-scheme: light;
+        /* Modern Font Stack */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        html, body, [class*="css"] {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
-        header[data-testid="stHeader"] {
-            display: none;
+
+        /* Main Container Styling */
+        .stApp {
+            background-color: #0e1117;
+            color: #ffffff;
         }
+
+        /* Sidebar Styling */
         section[data-testid="stSidebar"] {
-            top: 0;
+            background-color: #161b22;
         }
-        .block-container {
-            max-width: 1200px;
+
+        /* Inputs and Select Boxes */
+        .stTextInput input, .stSelectbox div[data-baseweb="select"] > div, .stTextArea textarea {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            border-radius: 6px;
         }
-        .block-container {
-            padding-top: 2rem;
-            padding-bottom: 3rem;
+        
+        /* Focus states */
+        .stTextInput input:focus, .stTextArea textarea:focus {
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 1px #58a6ff;
         }
-        h1, h2, h3, h4 {
-            font-family: "IBM Plex Serif", serif;
-            letter-spacing: 0.2px;
-        }
-        p, label, input, textarea, button, small {
-            font-family: "IBM Plex Sans", sans-serif;
-            color: var(--ink);
-        }
-        code, pre {
-            font-family: "JetBrains Mono", ui-monospace, monospace;
-        }
-        small, div[data-testid="stCaption"] {
-            color: var(--muted);
-        }
-        label {
+
+        /* Buttons */
+        .stButton button {
+            background-color: #238636;
+            color: #ffffff;
+            border: 1px solid rgba(240,246,252,0.1);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
             font-weight: 600;
+            transition: all 0.2s ease;
         }
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-            gap: 1.8rem;
-            padding: 2.2rem 2.4rem;
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
-            margin-bottom: 1.6rem;
+        .stButton button:hover {
+            background-color: #2ea043;
+            border-color: #8b949e;
         }
-        .hero-eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            font-size: 0.72rem;
-            color: var(--muted);
+        
+        /* Metric Cards */
+        [data-testid="stMetric"] {
+            background-color: #161b22;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
         }
-        .hero-title {
-            font-size: 2.6rem;
+        [data-testid="stMetricLabel"] {
+            color: #8b949e;
+            font-size: 0.875rem;
+        }
+        [data-testid="stMetricValue"] {
+            color: #58a6ff;
             font-weight: 700;
-            margin: 0.4rem 0 0.6rem 0;
         }
-        .hero-subtitle {
-            font-size: 1.05rem;
-            color: var(--muted);
-            max-width: 36rem;
+
+        /* Expanders */
+        .streamlit-expanderHeader {
+            background-color: #161b22;
+            border-radius: 6px;
+            border: 1px solid #30363d;
         }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: var(--accent);
-            color: #ffffff;
-            padding: 0.45rem 1.1rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .hero-card {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            background: var(--panel-muted);
-            color: var(--ink);
-            border-radius: 20px;
-            padding: 1.4rem 1.6rem;
-            border: 1px solid var(--border);
-        }
-        .hero-card h4 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--ink);
-        }
-        .hero-card p {
-            margin: 0;
-            color: var(--muted);
-        }
-        .hero-stat {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.55rem 0.75rem;
-            border-radius: 12px;
-            background: #ffffff;
-            border: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-        .section-subtitle {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-        .panel {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 1.4rem 1.6rem;
-            box-shadow: 0 18px 30px rgba(15, 23, 42, 0.05);
-        }
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            border-radius: 999px;
-            padding: 0.3rem 0.8rem;
-            background: rgba(2, 132, 199, 0.12);
-            color: var(--accent-strong);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        section[data-testid="stSidebar"],
-        section[data-testid="stSidebar"] > div,
-        div[data-testid="stSidebar"] {
-            background: var(--panel) !important;
-            border-right: 1px solid var(--border);
-        }
-        section[data-testid="stSidebar"] .stMarkdown,
-        section[data-testid="stSidebar"] label,
-        section[data-testid="stSidebar"] p,
-        section[data-testid="stSidebar"] span,
-        section[data-testid="stSidebar"] small,
-        div[data-testid="stSidebar"] .stMarkdown,
-        div[data-testid="stSidebar"] label,
-        div[data-testid="stSidebar"] p,
-        div[data-testid="stSidebar"] span {
-            color: var(--ink);
-        }
-        section[data-testid="stSidebar"] div[data-baseweb="input"],
-        section[data-testid="stSidebar"] div[data-baseweb="textarea"],
-        section[data-testid="stSidebar"] div[data-baseweb="select"] {
-            background: var(--panel);
-            border: 1px solid var(--border);
-        }
-        section[data-testid="stSidebar"] div[data-baseweb="input"] input,
-        section[data-testid="stSidebar"] div[data-baseweb="textarea"] textarea {
-            color: var(--ink) !important;
-            background: var(--panel) !important;
-        }
-        section[data-testid="stSidebar"] input,
-        section[data-testid="stSidebar"] textarea {
-            background: var(--panel) !important;
-            color: var(--ink) !important;
-        }
-        .stButton > button {
-            background: var(--accent);
-            color: #ffffff;
-            border: none;
-            padding: 0.7rem 1.6rem;
-            border-radius: 999px;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            box-shadow: 0 10px 18px rgba(2, 132, 199, 0.22);
-        }
-        .stButton > button:hover {
-            background: var(--accent-strong);
-            color: #ffffff;
-        }
-        button[kind="primary"] {
-            background: var(--accent) !important;
-            color: #ffffff !important;
-            border: none !important;
-        }
-        button[kind="primary"]:hover {
-            background: var(--accent-strong) !important;
-        }
-        .stDownloadButton > button {
-            background: var(--panel);
-            color: var(--ink);
-            border: 1px solid var(--border);
-            padding: 0.6rem 1.2rem;
-            border-radius: 999px;
-            font-weight: 600;
-        }
-        .stDownloadButton > button:hover {
-            border-color: var(--accent);
-            color: var(--accent-strong);
-        }
-        div[data-testid="stMetric"] {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 0.7rem 0.9rem;
-            box-shadow: 0 12px 22px rgba(15, 23, 42, 0.06);
-        }
-        div[data-testid="stMetric"] label {
-            font-size: 0.82rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-        div[data-testid="stMetric"] [data-testid="stMetricValue"] {
-            color: var(--ink) !important;
-            font-weight: 600;
-        }
-        div[data-testid="stMetric"] [data-testid="stMetricDelta"] {
-            color: var(--muted) !important;
-        }
-        div[data-baseweb="input"],
-        div[data-baseweb="textarea"],
-        div[data-baseweb="select"] {
-            background: var(--panel) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: 14px;
-        }
-        div[data-baseweb="input"] > div,
-        div[data-baseweb="textarea"] > div {
-            background: var(--panel) !important;
-        }
-        div[data-baseweb="input"]:focus-within,
-        div[data-baseweb="textarea"]:focus-within {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--focus);
-        }
-        div[data-baseweb="input"] input,
-        div[data-baseweb="textarea"] textarea {
-            background: var(--panel) !important;
-            color: var(--ink) !important;
-            padding: 0.55rem 0.7rem;
-            line-height: 1.4;
-            font-size: 0.95rem;
-            caret-color: var(--accent);
-        }
-        div[data-baseweb="input"] input::placeholder,
-        div[data-baseweb="textarea"] textarea::placeholder {
-            color: #94a3b8;
-        }
-        div[data-baseweb="input"] input {
-            overflow-x: auto;
-            white-space: nowrap;
-            text-overflow: clip;
-        }
-        div[data-baseweb="input"] input,
-        div[data-baseweb="textarea"] textarea {
-            -webkit-text-fill-color: var(--ink);
-        }
-        div[data-baseweb="textarea"] textarea {
-            white-space: pre-wrap;
-            overflow: auto;
-        }
-        div[data-baseweb="input"] input::-webkit-scrollbar,
-        div[data-baseweb="textarea"] textarea::-webkit-scrollbar {
-            height: 6px;
-        }
-        div[data-baseweb="input"] input::-webkit-scrollbar-thumb,
-        div[data-baseweb="textarea"] textarea::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 999px;
-        }
-        div[data-testid="stProgress"] > div > div {
-            background: var(--accent);
-        }
-        div[data-testid="stTabs"] button {
-            font-weight: 600;
-        }
-        div[data-testid="stCodeBlock"] {
-            background: #f8fafc !important;
-            color: var(--ink) !important;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        div[data-testid="stCodeBlock"] code {
-            color: var(--ink) !important;
-        }
-        div[data-testid="stCodeBlock"] pre,
-        div[data-testid="stCode"] pre,
-        div[data-testid="stCode"] code {
-            background: #f8fafc !important;
-            color: var(--ink) !important;
-        }
-        div[data-testid="stCode"] {
-            background: #f8fafc !important;
-            color: var(--ink) !important;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        section[data-testid="stSidebar"] div[data-testid="stCodeBlock"],
-        section[data-testid="stSidebar"] div[data-testid="stCode"] {
-            background: #f8fafc !important;
-            color: var(--ink) !important;
-            border: 1px solid var(--border);
-        }
-        div[data-testid="stAlert"] {
-            background: #fff7ed;
-            border: 1px solid #fdba74;
-            color: #9a3412;
+        
+        /* Headers */
+        h1, h2, h3, h4 {
+            color: #f0f6fc;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
-
-
 def normalize_results_dir(path_value: str) -> str:
     cleaned = os.path.expanduser(path_value.strip()) if path_value else ""
     if not cleaned:
@@ -490,21 +248,46 @@ def main() -> None:
         st.session_state["last_duration"] = None
         st.session_state["last_output_warning"] = ""
 
+
     with st.sidebar:
         st.markdown("## Run setup")
         st.caption("Configure the query, targets, and capture options.")
         with st.form("scrape_form"):
-            search_for = st.text_input(
-                "Search query",
-                value="turkish stores in toronto Canada",
-                help="Try: coffee shops in Seattle",
+            st.markdown("### Search Parameters")
+            
+            # Niches
+            niche_options = [
+                "Restaurants", "Dentists", "Gyms", "Real Estate Agents", 
+                "Plumbers", "Electricians", "Cafes", "Hotels",
+                "Lawyers", "Accounting Firms"
+            ]
+            selected_niches = st.multiselect("Select Niches", niche_options, default=None)
+            custom_niches_text = st.text_area(
+                "Custom Niches (one per line)", 
+                height=68, 
+                help="Enter custom business types here if not in the list."
             )
+            
+            # Locations
+            location_options = [
+                "New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX", 
+                "Phoenix, AZ", "Philadelphia, PA", "San Antonio, TX", "San Diego, CA",
+                "Dallas, TX", "San Jose, CA"
+            ]
+            selected_locations = st.multiselect("Select Locations", location_options, default=None)
+            custom_locations_text = st.text_area(
+                "Custom Locations (one per line)", 
+                height=68, 
+                help="Enter custom locations here, e.g., 'Miami, FL'."
+            )
+           
             total = st.number_input(
-                "Target leads",
+                "Target leads (per search)",
                 min_value=1,
                 max_value=500,
                 value=25,
                 step=1,
+                help="Maximum results to fetch for EACH generated search term."
             )
             output_name = st.text_input("Output file name", value="results.csv")
             append = st.checkbox("Append to existing file", value=False)
@@ -648,13 +431,48 @@ def main() -> None:
         st.markdown("</div>", unsafe_allow_html=True)
 
     if submitted:
+        # Prepare Niches and Locations
+        niches = []
+        if selected_niches:
+            niches.extend(selected_niches)
+        if custom_niches_text.strip():
+            niches.extend([x.strip() for x in custom_niches_text.split('\n') if x.strip()])
+        
+        locations = []
+        if selected_locations:
+            locations.extend(selected_locations)
+        if custom_locations_text.strip():
+            locations.extend([x.strip() for x in custom_locations_text.split('\n') if x.strip()])
+            
+        # Ensure unique and cleaned
+        niches = sorted(list(set(niches)))
+        locations = sorted(list(set(locations)))
+
+        if not niches or not locations:
+             status_line.error("Please provide at least one niche and one location.")
+             st.stop()
+
         if not extract_emails and not include_without_email:
-            status_line.write("Fix the data capture options before running.")
+            status_line.error("Fix the data capture options before running.")
             st.stop()
 
         os.makedirs(results_dir, exist_ok=True)
         log_lines = []
         start_ts = time.time()
+        
+        # Build search Queries
+        search_queries = []
+        for n in niches:
+            for l in locations:
+                search_queries.append(f"{n} in {l}")
+        
+        total_queries = len(search_queries)
+        overall_stats = None
+        all_places = []
+        
+        # Initialize progress tracking
+        current_query_index = 0
+        status_line.write(f"Starting batch of {total_queries} searches...")
 
         def progress_callback(payload: dict) -> None:
             processed = int(payload.get("processed", 0))
@@ -666,55 +484,98 @@ def main() -> None:
             websites_visited = int(payload.get("websites_visited", 0))
             current_found = payload.get("current_found")
             duplicates_skipped = int(payload.get("duplicates_skipped", 0))
+            
+            # Weighted progress: previous completed terms + current phrase progress
+            if total_queries > 0:
+                base_progress = current_query_index / total_queries
+                # Cap the internal progress for this phrase at 0.99 so we rely on term completion to push it
+                term_progress = min(found / target, 0.99)
+                total_progress = base_progress + (term_progress / total_queries)
+                progress_bar.progress(min(total_progress, 1.0))
 
-            progress_bar.progress(min(found / target, 1.0))
             if message:
-                status_line.write(message)
-                log_lines.append(message)
+                current_query_text = search_queries[current_query_index] if current_query_index < len(search_queries) else "Done"
+                prefix = f"[{current_query_index + 1}/{total_queries}] ({current_query_text}) "
+                log_lines.append(prefix + message)
+            
+            # Only update live status text, don't flood logs
+            status_line.write(f"Running query {current_query_index + 1}/{total_queries}: {search_queries[current_query_index] if current_query_index < len(search_queries) else ''} ...")
+            
             if listing_index and listings_total:
                 listing_status.write(f"Listing {listing_index} of {listings_total}")
             elif listings_total:
                 listing_status.write(f"Listings available: {listings_total}")
 
-            processed_placeholder.metric("Listings processed", processed)
-            found_placeholder.metric("Leads saved", found)
-            emails_placeholder.metric("Emails found", int(payload.get("emails_found", 0)))
-            failed_placeholder.metric("Failed listings", int(payload.get("failed", 0)))
-            websites_placeholder.metric("Websites visited", websites_visited)
-            duplicates_placeholder.metric("Duplicates skipped", duplicates_skipped)
-            if current_found is not None:
-                listings_total_placeholder.metric("Currently found", int(current_found))
-            else:
-                listings_total_placeholder.metric("Listings available", int(listings_total or 0))
-
+            # Note: Metrics below show stats for the *current* scrape_places call only if passed from it
+            # We would need a better aggregator for global stats live, but for now we show current run activity
+            processed_placeholder.metric("Listings processed (current)", processed)
+            found_placeholder.metric("Leads saved (current)", found)
+            emails_placeholder.metric("Emails (current)", int(payload.get("emails_found", 0)))
+            
             if log_lines:
                 log_box.code("\n".join(log_lines[-12:]), language="text")
 
-        places, stats = scrape_places(
-            search_for,
-            int(total),
-            include_without_email=include_without_email,
-            extract_emails=extract_emails,
-            email_filter_mode=email_filter_mode,
-            headless=headless,
-            max_scroll_attempts=max_scroll_attempts,
-            max_listings=None if unlimited_scan else int(max_listings),
-            dedup_enabled=dedup_enabled,
-            dedup_db_path=dedup_db_path,
-            show_tqdm=False,
-            progress_callback=progress_callback,
-        )
+        # Run Loop
+        for i, query in enumerate(search_queries):
+            current_query_index = i
+            log_lines.append(f"--- Starting: {query} ---")
+            
+            places, stats = scrape_places(
+                query,
+                int(total),
+                include_without_email=include_without_email,
+                extract_emails=extract_emails,
+                email_filter_mode=email_filter_mode,
+                headless=headless,
+                max_scroll_attempts=max_scroll_attempts,
+                max_listings=None if unlimited_scan else int(max_listings),
+                dedup_enabled=dedup_enabled,
+                dedup_db_path=dedup_db_path,
+                show_tqdm=False,
+                progress_callback=progress_callback,
+            )
+            
+            all_places.extend(places)
+            
+            # Aggregate stats
+            if overall_stats is None:
+                overall_stats = stats
+            else:
+                overall_stats.total_searched += stats.total_searched
+                overall_stats.successful_scrapes += stats.successful_scrapes
+                overall_stats.failed_scrapes += stats.failed_scrapes
+                overall_stats.duplicates_skipped += stats.duplicates_skipped
+                overall_stats.emails_found += stats.emails_found
+                overall_stats.websites_visited += stats.websites_visited
+                overall_stats.social_media_found += stats.social_media_found
+                overall_stats.target_leads += stats.target_leads # Add expected targets
 
-        save_places_to_csv(places, output_path, append=append)
-        generate_report(stats, output_path)
+            # Small pause between queries
+            time.sleep(1.5)
 
+        # Finalize
+        # Append is handled per-batch by save_places_to_csv? No, we should probably save once at the end or incrementally.
+        # Original code saved once. We have 'all_places' now.
+        # But 'append' flag logic in loop: if we save once at end, 'append' flag applies to the file on disk.
+        
+        save_places_to_csv(all_places, output_path, append=append)
+        
+        # Recalculate average time based on total wall clock for the batch?
+        # Or simple average of averages? Averages of averages is bad.
+        # Recalc proper average from total items vs total duration
         duration = time.time() - start_ts
+        if overall_stats and overall_stats.total_searched > 0:
+            overall_stats.average_time_per_business = duration / overall_stats.total_searched
+            
+        if overall_stats:
+            generate_report(overall_stats, output_path)
+
         progress_bar.progress(1.0)
-        status_line.write(f"Scrape complete in {duration:.1f}s")
+        status_line.write(f"Batch complete in {duration:.1f}s. Scraped {len(search_queries)} queries.")
 
         st.session_state["last_output_path"] = output_path
         st.session_state["last_report_path"] = output_path.replace(".csv", "_report.txt")
-        st.session_state["last_stats"] = stats
+        st.session_state["last_stats"] = overall_stats
         st.session_state["last_duration"] = duration
         if os.path.exists(output_path):
             df, warning = load_csv_safe(output_path)
