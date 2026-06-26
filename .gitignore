@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Results and Data
+results/
+*.csv
+*.xlsx
+*.txt
+*.sqlite
+*.db
+debug_*.png
+debug_*.html
+
+# Playwright
+.cache/
+
+# OS and IDE
+.DS_Store
+.vscode/
+.idea/
